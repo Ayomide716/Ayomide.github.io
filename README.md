@@ -1,69 +1,115 @@
-# Welcome to your Lovable project
+# Expense Tracker
 
-## Project info
+A simple and efficient Expense Tracker web application that allows users to manage their finances by adding transactions, categorizing them, and viewing analytics.
 
-**URL**: https://lovable.dev/projects/6bdf6f71-07cb-40fe-a86a-5707ff1a936a
+## Features
 
-## How can I edit this code?
+- Add and delete transactions (income or expense).
+- Categorize transactions (e.g., Food, Rent, Salary, Entertainment, etc.).
+- View total income, total expenses, and balance.
+- Analytics dashboard with graphs and charts to visualize spending habits.
+- User-friendly interface with responsive design.
 
-There are several ways of editing your application.
+## Technologies Used
 
-**Use Lovable**
+- **Frontend**: HTML, CSS, JavaScript, Bootstrap
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB (for storing transaction data)
+- **Charting Library**: Chart.js (for analytics visualization)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/6bdf6f71-07cb-40fe-a86a-5707ff1a936a) and start prompting.
+## Installation
 
-Changes made via Lovable will be committed automatically to this repo.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/expense-tracker.git
+   cd expense-tracker
 
-**Use your preferred IDE**
+2. Install dependencies:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+npm install
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-Follow these steps:
+3. Set up the environment variables:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Create a .env file in the root directory.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Add the following variables:
 
-# Step 3: Install the necessary dependencies.
-npm i
+MONGO_URI=<your_mongodb_connection_string>
+PORT=3000
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
 
-**Edit a file directly in GitHub**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+4. Start the development server:
 
-**Use GitHub Codespaces**
+npm start
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## What technologies are used for this project?
+5. Open your browser and go to http://localhost:3000.
 
-This project is built with .
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
 
-## How can I deploy this project?
+Usage
 
-Simply open [Lovable](https://lovable.dev/projects/6bdf6f71-07cb-40fe-a86a-5707ff1a936a) and click on Share -> Publish.
+1. Add new transactions by providing details such as amount, category, and description.
 
-## I want to use a custom domain - is that possible?
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+2. View a list of all transactions with options to edit or delete them.
+
+
+3. Explore the analytics dashboard to see graphs of your spending trends and category-wise breakdown.
+
+
+
+Screenshots
+
+Home Page
+
+
+
+Add Transaction
+
+
+
+Analytics Dashboard
+
+
+
+Roadmap
+
+[ ] Implement user authentication for personal account management.
+
+[ ] Add export options (e.g., download reports as PDF or Excel).
+
+[ ] Add recurring transaction reminders.
+
+[ ] Support multiple currencies and currency conversion.
+
+[ ] Integrate with payment gateways for automated tracking.
+
+
+Contributing
+
+Contributions are welcome! Please fork the repository and submit a pull request for any improvements or bug fixes.
+
+License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+Contact
+
+For any queries or feedback, feel free to reach out:
+
+Email: your-email@example.com
+
+GitHub: your-username
+
+
+
+---
+
+Happy Tracking!
+
+Let me know if you'd like to customize this further!
+
+
