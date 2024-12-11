@@ -1,16 +1,23 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { Transaction } from "./TransactionList";
 
-const data = [
-  { name: "Jan", amount: 1400 },
-  { name: "Feb", amount: 1200 },
-  { name: "Mar", amount: 1100 },
-  { name: "Apr", amount: 1500 },
-  { name: "May", amount: 900 },
-  { name: "Jun", amount: 1700 },
-];
+interface ExpenseChartProps {
+  transactions: Transaction[];
+}
 
-export function ExpenseChart() {
+export function ExpenseChart({ transactions }: ExpenseChartProps) {
+  const monthlyData = transactions.reduce((acc: Record<string, number>, transaction) => {
+    const month = new Date(transaction.date).toLocaleString('default', { month: 'short' });
+    acc[month] = (acc[month] || 0) + transaction.amount;
+    return acc;
+  }, {});
+
+  const data = Object.entries(monthlyData).map(([name, amount]) => ({
+    name,
+    amount,
+  }));
+
   return (
     <Card className="col-span-4">
       <CardHeader>
