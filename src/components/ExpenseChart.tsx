@@ -6,8 +6,8 @@ interface ExpenseChartProps {
   transactions: Transaction[];
 }
 
-export function ExpenseChart({ transactions }: ExpenseChartProps) {
-  const monthlyData = transactions.reduce((acc: Record<string, number>, transaction) => {
+export function ExpenseChart({ transactions = [] }: ExpenseChartProps) {
+  const monthlyData = (transactions || []).reduce((acc: Record<string, number>, transaction) => {
     const month = new Date(transaction.date).toLocaleString('default', { month: 'short' });
     acc[month] = (acc[month] || 0) + transaction.amount;
     return acc;
