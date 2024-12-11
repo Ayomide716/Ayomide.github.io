@@ -21,7 +21,7 @@ A simple and efficient Expense Tracker web application that allows users to mana
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/expense-tracker.git
+   git clone https://github.com/Ayomide716/funds-friend-manager.git
    cd expense-tracker
 
 2. Install dependencies:
