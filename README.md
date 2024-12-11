@@ -91,16 +91,14 @@ Contact
 
 For any queries or feedback, feel free to reach out:
 
-Email: your-email@example.com
+Email: ayomidefamoyegun1@gmail.com
 
-GitHub: your-username
+GitHub: Ayomide716
 
 
 
 ---
 
 Happy Tracking!
-
-Let me know if you'd like to customize this further!
 
 
