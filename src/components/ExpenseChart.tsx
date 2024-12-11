@@ -19,12 +19,12 @@ export function ExpenseChart({ transactions = [] }: ExpenseChartProps) {
   }));
 
   return (
-    <Card className="col-span-4">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle>Expense Overview</CardTitle>
       </CardHeader>
       <CardContent className="pl-2">
-        <div className="h-[300px]">
+        <div className="h-[200px] sm:h-[250px] md:h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={data}>
               <defs>

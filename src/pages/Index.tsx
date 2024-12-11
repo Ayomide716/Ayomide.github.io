@@ -70,13 +70,13 @@ const Index = () => {
   const totals = calculateTotals();
 
   return (
-    <div className="container py-10">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="font-montserrat text-4xl font-bold">Financial Overview</h1>
+    <div className="container px-4 sm:px-6 py-6 sm:py-10">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
+        <h1 className="font-montserrat text-2xl sm:text-3xl md:text-4xl font-bold">Financial Overview</h1>
         <TransactionDialog onAddTransaction={handleAddTransaction} />
       </div>
       
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 sm:mb-8">
         <ExpenseCard
           title="Total Balance"
           amount={totals.balance}
@@ -99,9 +99,11 @@ const Index = () => {
         />
       </div>
 
-      <div className="grid gap-4 md:grid-cols-7 mb-8">
-        <ExpenseChart transactions={transactions} />
-        <div className="md:col-span-3">
+      <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 mb-6 sm:mb-8">
+        <div className="lg:col-span-4">
+          <ExpenseChart transactions={transactions} />
+        </div>
+        <div className="lg:col-span-3">
           <TransactionList
             transactions={transactions}
             onUpdateTransaction={handleUpdateTransaction}

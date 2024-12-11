@@ -77,9 +77,9 @@ export function TransactionList({
           {transactions.map((transaction) => (
             <div
               key={transaction.id}
-              className="flex items-center justify-between p-4 rounded-lg bg-secondary/50"
+              className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-lg bg-secondary/50 gap-4"
             >
-              <div className="space-y-1">
+              <div className="space-y-1 w-full sm:w-auto">
                 <p className="text-sm font-medium leading-none">
                   {transaction.description}
                 </p>
@@ -87,14 +87,14 @@ export function TransactionList({
                   {transaction.category}
                 </p>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 w-full sm:w-auto">
                 <div className="text-sm text-muted-foreground">
                   {new Date(transaction.date).toLocaleDateString()}
                 </div>
                 <div className={`font-medium ${transaction.amount < 0 ? "text-red-500" : "text-green-500"}`}>
                   {formatCurrency(transaction.amount)}
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2 w-full sm:w-auto justify-end">
                   <Button
                     variant="ghost"
                     size="icon"
@@ -117,7 +117,7 @@ export function TransactionList({
       </CardContent>
 
       <Dialog open={!!editingTransaction} onOpenChange={() => setEditingTransaction(null)}>
-        <DialogContent>
+        <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>Edit Transaction</DialogTitle>
           </DialogHeader>
