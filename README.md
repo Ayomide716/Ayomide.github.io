@@ -26,7 +26,7 @@ A simple and efficient Expense Tracker web application that allows users to mana
 
 2. Install dependencies:
 
-npm install
+```npm install```
 
 
 3. Set up the environment variables:
