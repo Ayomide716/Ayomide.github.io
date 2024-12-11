@@ -37,21 +37,25 @@ Create a .env file in the root directory.
 
 Add the following variables:
 
+```bash
 MONGO_URI=<your_mongodb_connection_string>
 PORT=3000
+```
 
 
 
 4. Start the development server:
 
+```bash
 npm start
+```
 
 
 5. Open your browser and go to http://localhost:3000.
 
 
 
-Usage
+## Usage
 
 1. Add new transactions by providing details such as amount, category, and description.
 
@@ -62,22 +66,7 @@ Usage
 3. Explore the analytics dashboard to see graphs of your spending trends and category-wise breakdown.
 
 
-
-Screenshots
-
-Home Page
-
-
-
-Add Transaction
-
-
-
-Analytics Dashboard
-
-
-
-Roadmap
+## Further Additions
 
 [ ] Implement user authentication for personal account management.
 
