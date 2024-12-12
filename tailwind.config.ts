@@ -18,6 +18,9 @@ export default {
       },
     },
     extend: {
+      screens: {
+        'xs': '375px',
+      },
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
       },

@@ -88,27 +88,27 @@ const Index = () => {
   const totals = calculateTotals();
 
   const MobileHeader = () => (
-    <div className="flex items-center justify-between p-4 border-b">
+    <div className="flex items-center justify-between p-2 sm:p-4 border-b">
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="ghost" size="icon">
-            <Menu className="h-6 w-6" />
+          <Button variant="ghost" size="icon" className="lg:hidden">
+            <Menu className="h-5 w-5" />
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="w-[300px]">
+        <SheetContent side="left" className="w-[80vw] sm:w-[300px]">
           <div className="flex flex-col gap-4 mt-8">
             <TransactionDialog onAddTransaction={handleAddTransaction} />
           </div>
         </SheetContent>
       </Sheet>
-      <h1 className="font-montserrat text-xl font-bold">Financial Overview</h1>
-      <div className="w-10" /> {/* Spacer for balance */}
+      <h1 className="font-montserrat text-lg sm:text-xl font-bold">Financial Overview</h1>
+      <div className="w-10" />
     </div>
   );
 
   const DesktopHeader = () => (
-    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
-      <h1 className="font-montserrat text-2xl sm:text-3xl md:text-4xl font-bold">
+    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 sm:mb-6 lg:mb-8">
+      <h1 className="font-montserrat text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold">
         Financial Overview
       </h1>
       <TransactionDialog onAddTransaction={handleAddTransaction} />
@@ -119,31 +119,31 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {isMobile ? <MobileHeader /> : <DesktopHeader />}
       
-      <div className="p-4 sm:container sm:px-4 sm:py-6">
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
+      <div className="p-2 sm:p-4 md:p-6 lg:container lg:px-4 xl:px-0">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-4 mb-4 sm:mb-6">
           <ExpenseCard
             title="Balance"
             amount={totals.balance}
-            icon={<Wallet className="h-4 w-4 text-primary" />}
+            icon={<Wallet className="h-3 w-3 sm:h-4 sm:w-4 text-primary" />}
           />
           <ExpenseCard
             title="Income"
             amount={totals.income}
-            icon={<ArrowUpRight className="h-4 w-4 text-green-500" />}
+            icon={<ArrowUpRight className="h-3 w-3 sm:h-4 sm:w-4 text-green-500" />}
           />
           <ExpenseCard
             title="Expenses"
             amount={totals.expenses}
-            icon={<ArrowDownRight className="h-4 w-4 text-red-500" />}
+            icon={<ArrowDownRight className="h-3 w-3 sm:h-4 sm:w-4 text-red-500" />}
           />
           <ExpenseCard
             title="Savings"
             amount={totals.savings}
-            icon={<PiggyBank className="h-4 w-4 text-accent" />}
+            icon={<PiggyBank className="h-3 w-3 sm:h-4 sm:w-4 text-accent" />}
           />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-7 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-7 gap-3 sm:gap-4">
           <div className="lg:col-span-4">
             <ExpenseChart transactions={transactions} />
           </div>
