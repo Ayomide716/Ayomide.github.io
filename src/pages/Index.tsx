@@ -3,37 +3,51 @@ import { ExpenseCard } from "@/components/ExpenseCard";
 import { ExpenseChart } from "@/components/ExpenseChart";
 import { TransactionList, Transaction } from "@/components/TransactionList";
 import { TransactionDialog } from "@/components/TransactionDialog";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const initialTransactions: Transaction[] = [
-  {
-    id: 1,
-    description: "Grocery Shopping",
-    amount: -120.50,
-    category: "Food",
-    date: "2024-04-10",
-    type: "expense"
-  },
-  {
-    id: 2,
-    description: "Netflix Subscription",
-    amount: -15.99,
-    category: "Entertainment",
-    date: "2024-04-09",
-    type: "expense"
-  },
-  {
-    id: 3,
-    description: "Monthly Salary",
-    amount: 5000.00,
-    category: "Salary",
-    date: "2024-04-01",
-    type: "income"
-  },
-];
+const STORAGE_KEY = 'expense-tracker-transactions';
+
+const getInitialTransactions = (): Transaction[] => {
+  const storedTransactions = localStorage.getItem(STORAGE_KEY);
+  if (storedTransactions) {
+    return JSON.parse(storedTransactions);
+  }
+  
+  // Default transactions if nothing in localStorage
+  return [
+    {
+      id: 1,
+      description: "Grocery Shopping",
+      amount: -120.50,
+      category: "Food",
+      date: "2024-04-10",
+      type: "expense"
+    },
+    {
+      id: 2,
+      description: "Netflix Subscription",
+      amount: -15.99,
+      category: "Entertainment",
+      date: "2024-04-09",
+      type: "expense"
+    },
+    {
+      id: 3,
+      description: "Monthly Salary",
+      amount: 5000.00,
+      category: "Salary",
+      date: "2024-04-01",
+      type: "income"
+    },
+  ];
+};
 
 const Index = () => {
-  const [transactions, setTransactions] = useState<Transaction[]>(initialTransactions);
+  const [transactions, setTransactions] = useState<Transaction[]>(getInitialTransactions);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(transactions));
+  }, [transactions]);
 
   const calculateTotals = () => {
     const income = transactions
