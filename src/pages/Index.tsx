@@ -1,9 +1,12 @@
-import { Wallet, ArrowUpRight, ArrowDownRight, PiggyBank } from "lucide-react";
+import { Wallet, ArrowUpRight, ArrowDownRight, PiggyBank, Menu } from "lucide-react";
 import { ExpenseCard } from "@/components/ExpenseCard";
 import { ExpenseChart } from "@/components/ExpenseChart";
 import { TransactionList, Transaction } from "@/components/TransactionList";
 import { TransactionDialog } from "@/components/TransactionDialog";
 import { useState, useEffect } from "react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const STORAGE_KEY = 'expense-tracker-transactions';
 
@@ -44,6 +47,7 @@ const getInitialTransactions = (): Transaction[] => {
 
 const Index = () => {
   const [transactions, setTransactions] = useState<Transaction[]>(getInitialTransactions);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(transactions));
@@ -83,46 +87,73 @@ const Index = () => {
 
   const totals = calculateTotals();
 
-  return (
-    <div className="container px-4 sm:px-6 py-6 sm:py-10">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
-        <h1 className="font-montserrat text-2xl sm:text-3xl md:text-4xl font-bold">Financial Overview</h1>
-        <TransactionDialog onAddTransaction={handleAddTransaction} />
-      </div>
-      
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 sm:mb-8">
-        <ExpenseCard
-          title="Total Balance"
-          amount={totals.balance}
-          icon={<Wallet className="h-4 w-4 text-primary" />}
-        />
-        <ExpenseCard
-          title="Income"
-          amount={totals.income}
-          icon={<ArrowUpRight className="h-4 w-4 text-green-500" />}
-        />
-        <ExpenseCard
-          title="Expenses"
-          amount={totals.expenses}
-          icon={<ArrowDownRight className="h-4 w-4 text-red-500" />}
-        />
-        <ExpenseCard
-          title="Savings"
-          amount={totals.savings}
-          icon={<PiggyBank className="h-4 w-4 text-accent" />}
-        />
-      </div>
+  const MobileHeader = () => (
+    <div className="flex items-center justify-between p-4 border-b">
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="ghost" size="icon">
+            <Menu className="h-6 w-6" />
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="left" className="w-[300px]">
+          <div className="flex flex-col gap-4 mt-8">
+            <TransactionDialog onAddTransaction={handleAddTransaction} />
+          </div>
+        </SheetContent>
+      </Sheet>
+      <h1 className="font-montserrat text-xl font-bold">Financial Overview</h1>
+      <div className="w-10" /> {/* Spacer for balance */}
+    </div>
+  );
 
-      <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 mb-6 sm:mb-8">
-        <div className="lg:col-span-4">
-          <ExpenseChart transactions={transactions} />
-        </div>
-        <div className="lg:col-span-3">
-          <TransactionList
-            transactions={transactions}
-            onUpdateTransaction={handleUpdateTransaction}
-            onDeleteTransaction={handleDeleteTransaction}
+  const DesktopHeader = () => (
+    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
+      <h1 className="font-montserrat text-2xl sm:text-3xl md:text-4xl font-bold">
+        Financial Overview
+      </h1>
+      <TransactionDialog onAddTransaction={handleAddTransaction} />
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen bg-background">
+      {isMobile ? <MobileHeader /> : <DesktopHeader />}
+      
+      <div className="p-4 sm:container sm:px-4 sm:py-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
+          <ExpenseCard
+            title="Balance"
+            amount={totals.balance}
+            icon={<Wallet className="h-4 w-4 text-primary" />}
           />
+          <ExpenseCard
+            title="Income"
+            amount={totals.income}
+            icon={<ArrowUpRight className="h-4 w-4 text-green-500" />}
+          />
+          <ExpenseCard
+            title="Expenses"
+            amount={totals.expenses}
+            icon={<ArrowDownRight className="h-4 w-4 text-red-500" />}
+          />
+          <ExpenseCard
+            title="Savings"
+            amount={totals.savings}
+            icon={<PiggyBank className="h-4 w-4 text-accent" />}
+          />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-7 gap-4">
+          <div className="lg:col-span-4">
+            <ExpenseChart transactions={transactions} />
+          </div>
+          <div className="lg:col-span-3">
+            <TransactionList
+              transactions={transactions}
+              onUpdateTransaction={handleUpdateTransaction}
+              onDeleteTransaction={handleDeleteTransaction}
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -18,6 +18,7 @@ import {
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface TransactionDialogProps {
   onAddTransaction: (transaction: {
@@ -31,6 +32,7 @@ interface TransactionDialogProps {
 
 export function TransactionDialog({ onAddTransaction }: TransactionDialogProps) {
   const [open, setOpen] = useState(false);
+  const isMobile = useIsMobile();
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
@@ -77,11 +79,11 @@ export function TransactionDialog({ onAddTransaction }: TransactionDialogProps) 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="gap-2">
-          <Plus className="h-4 w-4" /> Add Transaction
+        <Button className={`gap-2 ${isMobile ? 'w-full' : ''}`}>
+          <Plus className="h-4 w-4" /> {isMobile ? 'New Transaction' : 'Add Transaction'}
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Add New Transaction</DialogTitle>
         </DialogHeader>
