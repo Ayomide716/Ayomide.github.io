@@ -1,4 +1,3 @@
-```markdown
 # Expense Tracker
 
 A simple and efficient Expense Tracker web application that allows users to manage their finances by adding transactions, categorizing them, and viewing analytics.
@@ -78,4 +77,3 @@ For any queries or feedback, feel free to reach out:
 Happy Tracking!
 ```
 
-You can update your `README.md` file with this improved version.
